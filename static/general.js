@@ -1,0 +1,1 @@
+var ajaxurl_search="http://tingapi.ting.baidu.com/v1/restserver/ting";

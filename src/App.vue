@@ -2,22 +2,28 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <div id="navbar">
-      <!-- <router-link to="/find"> -->
-        <div class="nav">
-          <div class="nav-icon"></div>
-          <div class="nav-body">搜索</div>
+      <router-link to="/search">
+        <div class="nav" :class="{'ischoose':ischoose==1}" @click="choose(1)">
+          <!-- <div class="nav-icon"><img class="nav-icon" src="static/search.png"></div> -->
+          <div class="nav-body">
+            <span><img class="nav-icon" src="/static/search.png"></span>搜索
+          </div>
         </div>
-      <!-- </router-link> -->
+      </router-link>
       <!-- <router-link to="/likebill"> -->
-        <div class="nav">
-          <div class="nav-icon"></div>
-          <div class="nav-body">我喜欢的音乐</div>
+        <div class="nav" :class="{'ischoose':ischoose==2}" @click="choose(2)">
+          <!-- <div class="nav-icon"><img class="nav-icon" src="static/like.png"></div> -->
+          <div class="nav-body">
+            <span><img class="nav-icon" src="/static/like.png"></span>我喜欢的音乐
+          </div>
         </div>
       <!-- </router-link> -->
       <!-- <router-link to="/bill"> -->
-        <div class="nav">
-          <div class="nav-icon"></div>
-          <div class="nav-body">我创建的歌单</div>
+        <div class="nav" :class="{'ischoose':ischoose==3}" @click="choose(3)">
+          <!-- <div class="nav-icon"><img class="nav-icon" src="static/playlist.png"></div> -->
+          <div class="nav-body">
+            <span><img class="nav-icon" src="/static/playlist.png"></span>我创建的歌单
+          </div>
         </div>
       <!-- </router-link> -->
     </div>
@@ -27,7 +33,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+    return {
+      ischoose:0
+    }
+  },
+  methods:{
+    choose(val){
+      this.ischoose = val;
+    }
+  }
 }
 </script>
 
@@ -54,12 +70,29 @@ body{
   border: 2px solid rgb(211,211,211);
 }
 .nav{
-  margin: 20px 8px;
-}
-a{
-  text-decoration: none;
+  height: 32px;
+  margin: 0 0;
+  padding-top: 8px;
+  padding-bottom: 10px;
 }
 .nav-body{
-  font-size: 18px; 
+  height: 32px;
+  font-size: 20px;
+  line-height: 32px;
+}
+.nav-icon{
+  width: 18px;
+  height: 18px;
+  margin: auto 8px;
+}
+a{
+  color: #000;
+  text-decoration: none;
+}
+a:hover .nav{
+  background-color: rgb(211,211,211);
+}
+.ischoose{
+  background-color: rgb(200,200,200);
 }
 </style>

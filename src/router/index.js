@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import search from '@/components/search'
+import search from '@/components/search/search'
 // import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
