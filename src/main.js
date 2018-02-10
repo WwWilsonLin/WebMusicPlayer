@@ -8,6 +8,7 @@ import axios from 'axios'
 Vue.config.productionTip = false;
 
 Vue.prototype.$axios = axios;
+Vue.prototype.SEARCH_HOST = '/api'
 
 axios.defaults.withCredentials= true;
 

@@ -15,11 +15,8 @@ export default{
 	methods:{
 		search(){
 			// this.clear();
-			this.$axios.get(ajaxurl_search,{
+			this.$axios.get(this.SEARCH_HOST,{
 				params: {
-					// "format":"json",
-					// "callback":"",
-					// "from":"webapp_music",
 					"method": "baidu.ting.search.catalogSug",
 					"query":this.searchWord
 				}
