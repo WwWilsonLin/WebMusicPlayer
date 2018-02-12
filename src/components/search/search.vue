@@ -6,24 +6,48 @@
 		<div>
 			<div class="search-nav">单曲</div>
 			<div class="search-nav">歌手</div>
+			<div class="search-nav">专辑</div>
 		</div>
 		<hr>
-		<!-- <result></result> -->
+		<div v-for="(item,index) in songList" v-show = "issong">
+			<songlist :songname="item.songname"
+			:artistname="item.artistname"
+			:songid="item.songid"></songlist>
+		</div>
+		<!-- <div v-for="(item,index) in artistList" v-show = "isartist">
+			<artistlist></artistlist>
+		</div> -->
+		<!-- <div v-for="(item,index) in albumList" v-show = "isalbum">
+			<albumlist></albumlist>
+		</div> -->
 	</div>
 </div>
 
 </template>
 
 <script>
+import songlist from "./songlist.vue"
+
 export default{
+	components:{
+		songlist,
+	// 	artistlist,
+	// 	albumlist
+	},
 	data(){
 		return{
+			issong:true,
+			isartist:false,
+			isalbum:false,
 			searchWord:"",
+			songList:[],
+			artistList:[],
+			albumList:[],
 		}
 	},
 	methods:{
 		search(){
-			// this.clear();
+			this.clear();
 			this.$axios.get(this.SEARCH_HOST,{
 				params: {
 					"method": "baidu.ting.search.catalogSug",
@@ -31,14 +55,37 @@ export default{
 				}
 			}).then(res=>{
 				console.log(res);
+				var _this = this;
+				for (var i=0; i<res.data.song.length; i++){
+					let a={};
+					a.songname = res.data.song[i].songname;
+					a.artistname = res.data.song[i].artistname;
+					a.songid = res.data.song[i].songid;
+					_this.songList.push(a);
+				}
+				for (var i=0; i<res.data.artist.length; i++){
+					let b={};
+					b.artistname = res.data.artist[i].artistname;
+					b.artistpic = res.data.artist[i].artistpic;
+					b.artistid = res.data.artist[i].artistid;
+					_this.artistList.push(b);
+				}
+				for (var i=0; i<res.data.album.length; i++){
+					let c={};
+					c.artistname = res.data.album[i].artistname;
+					c.albumname = res.data.album[i].albumname;
+					c.artistpic = res.data.album[i].artistpic;
+					c.albumid = res.data.album[i].albumid;
+					_this.albumList.push(c);
+				}
 			}).catch(res=>{
 				console.log(res);
 			})
 		},
-		// clear: function(){
-		// 	var _this = this;
-		// 	this.searchlist.splice(0,this.searchlist.length);
-		// },
+		clear: function(){
+			var _this = this;
+			this.songList.splice(0,this.songList.length);
+		},
 	}
 }
 </script>
