@@ -1,6 +1,6 @@
 <template>
 <div>
-	<div class="songname">{{songname}}</div>
+	<div class="artistpic"><img :src="artistpic" style="width: 48px;height: 48px;"></div>
 	<div class="artistname">{{artistname}}</div>
 	<hr>
 </div>
@@ -8,32 +8,25 @@
 
 <script>
 export default{
-	props:["songname","artistname","songid"],
-
+	props:["artistpic","artistname","artistid"],
 }
 </script>
 
 <style scoped>
-.songname{
-	width: 68%;
+.artistpic{
+	width: 10%;
 	height: 48px;
-	font-size: 16px;
-	line-height: 48px;
-	margin: auto 1%;
 	position: relative;
 	float: left;
-	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
+	margin: auto 2%;
 }
 .artistname{
-	width: 30%;
+	width: 86%;
 	height: 48px;
 	font-size: 16px;
 	line-height: 48px;
-	/*text-align: center;*/
 	position: relative;
-	float: right;
+	float: left;
 	overflow: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;

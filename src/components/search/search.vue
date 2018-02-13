@@ -4,22 +4,30 @@
 	<span><img class="search-icon" src="/static/search.png" @click="search()"></span>
 	<div id="result">
 		<div>
-			<div class="search-nav">单曲</div>
-			<div class="search-nav">歌手</div>
-			<div class="search-nav">专辑</div>
+			<div class="search-nav" @click="changemode(1)">单曲<span class="count">({{songList.length}})</span></div>
+			<div class="search-nav" @click="changemode(2)">歌手<span class="count">({{artistList.length}})</span></div>
+			<div class="search-nav" @click="changemode(3)">专辑<span class="count">({{albumList.length}})</span></div>
 		</div>
 		<hr>
-		<div v-for="(item,index) in songList" v-show = "issong">
-			<songlist :songname="item.songname"
-			:artistname="item.artistname"
-			:songid="item.songid"></songlist>
+		<div class="result">
+			<div v-for="(item,index) in songList" v-show = "issong" class="list">
+				<songlist :songname="item.songname"
+				:artistname="item.artistname"
+				:songid="item.songid"></songlist>
+			</div>
+			<div v-for="(item,index) in artistList" v-show = "isartist" class="list">
+				<artistlist :artistname="item.artistname"
+				:artistpic="item.artistpic"
+				:artistid="item.artistid"></artistlist>
+			</div>
+			<div v-for="(item,index) in albumList" v-show = "isalbum" class="list">
+				<albumlist :artistname="item.artistname"
+				:artistpic="item.artistpic"
+				:albumid="item.albumid"
+				:albumname="item.albumname"></albumlist>
+			</div>
 		</div>
-		<!-- <div v-for="(item,index) in artistList" v-show = "isartist">
-			<artistlist></artistlist>
-		</div> -->
-		<!-- <div v-for="(item,index) in albumList" v-show = "isalbum">
-			<albumlist></albumlist>
-		</div> -->
+		
 	</div>
 </div>
 
@@ -27,12 +35,14 @@
 
 <script>
 import songlist from "./songlist.vue"
+import artistlist from "./artistlist.vue"
+import albumlist from "./albumlist.vue"
 
 export default{
 	components:{
 		songlist,
-	// 	artistlist,
-	// 	albumlist
+		artistlist,
+		albumlist
 	},
 	data(){
 		return{
@@ -66,7 +76,7 @@ export default{
 				for (var i=0; i<res.data.artist.length; i++){
 					let b={};
 					b.artistname = res.data.artist[i].artistname;
-					b.artistpic = res.data.artist[i].artistpic;
+					b.artistpic = res.data.artist[i].artistpic||'/static/artist_default.png';
 					b.artistid = res.data.artist[i].artistid;
 					_this.artistList.push(b);
 				}
@@ -85,6 +95,29 @@ export default{
 		clear: function(){
 			var _this = this;
 			this.songList.splice(0,this.songList.length);
+			this.artistList.splice(0,this.artistList.length);
+			this.albumList.splice(0,this.albumList.length);
+		},
+		changemode(val){
+			switch (val) {
+				case 1:
+					this.issong = true;
+					this.isartist = false;
+					this.isalbum = false;
+					break;
+				case 2:
+					this.issong = false;
+					this.isartist = true;
+					this.isalbum = false;
+					break;
+				case 3:
+					this.issong = false;
+					this.isartist = false;
+					this.isalbum = true;
+					break;
+				default:
+					break;
+			}
 		},
 	}
 }
@@ -135,8 +168,13 @@ export default{
 	margin: auto 5%;
 	/*border: 1px solid;*/
 }
+.result{
+	width: 100%;
+	height: 88%;
+	overflow: auto;
+}
 .search-nav{
-	width: 46px;
+	width: 70px;
 	height: 32px;
 	line-height: 32px;
 	font-size: 20px;
@@ -144,9 +182,18 @@ export default{
 	float: left;
 	margin: 8px 16px;
 }
+.count{
+	font-size: 16px;
+}
 hr{
 	width: 98%;
 	margin: 8px 1%;
 	border: 1px solid rgb(211,211,211);
+}
+.list:nth-of-type(odd){
+	background-color: rgb(233,233,233);
+}
+.list:nth-of-type(even){
+	background-color: rgb(249,249,249);
 }
 </style>

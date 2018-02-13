@@ -6,7 +6,7 @@
         <div class="nav" :class="{'ischoose':ischoose==1}" @click="choose(1)">
           <!-- <div class="nav-icon"><img class="nav-icon" src="static/search.png"></div> -->
           <div class="nav-body">
-            <span><img class="nav-icon" src="/static/search.png"></span>搜索
+            <span><img class="nav-icon" src="/static/search.png"></span>发现音乐
           </div>
         </div>
       </router-link>
