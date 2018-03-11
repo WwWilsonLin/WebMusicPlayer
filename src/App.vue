@@ -28,6 +28,8 @@
       <!-- </router-link> -->
     </div>
     <router-view/>
+    <audio id="music-play"></audio>
+    <div id="controller"></div>
   </div>
 </template>
 
@@ -65,7 +67,7 @@ body{
 }
 #navbar{
   width: 180px;
-  height: 90%;
+  height: 546px;
   background-color: rgb(244,245,245);
   border: 2px solid rgb(211,211,211);
 }
@@ -94,5 +96,13 @@ a:hover .nav{
 }
 .ischoose{
   background-color: rgb(200,200,200);
+}
+#controller{
+  width: 100vw;
+  height: 65px;
+  border: 2px solid rgb(211,211,211);
+  position: fixed;
+  bottom: 0px;
+  background-color: rgb(249,249,249);
 }
 </style>

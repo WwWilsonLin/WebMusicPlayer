@@ -141,7 +141,7 @@ export default{
 }
 #search-body{
 	/*width: 80%;*/
-	height: 90%;
+	height: 550px;
 	left: 184px;
 	top: 0;
 	position: absolute;
@@ -164,13 +164,13 @@ export default{
 }
 #result{
 	width: 90%;
-	height: 83%;
+	height: 458px;
 	margin: auto 5%;
 	/*border: 1px solid;*/
 }
 .result{
 	width: 100%;
-	height: 88%;
+	height: 400px;
 	overflow: auto;
 }
 .search-nav{
