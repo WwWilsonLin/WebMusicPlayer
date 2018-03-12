@@ -18,6 +18,7 @@ export default{
 				}
 			}).then(res=>{
 				// console.log(document.getElementById("music-play"))
+				//pic|singer|songname|file_duration
 				document.getElementById("music-play").pause();
 				document.getElementById("music-play").src= res.data.bitrate.file_link;
 				document.getElementById("music-play").play();

@@ -29,7 +29,12 @@
     </div>
     <router-view/>
     <audio id="music-play"></audio>
-    <div id="controller"></div>
+    <div id="controller">
+      <div id="controller-songpic"></div>
+      <div id="controller-back" class="control"><img src="/static/Back_Music.png"></div>
+      <div id="controller-play" class="control"><img src="/static/Music_Play_Button.png"></div>
+      <div id="controller-next" class="control"><img src="/static/Next_Music.png"></div>
+    </div>
   </div>
 </template>
 
@@ -104,5 +109,25 @@ a:hover .nav{
   position: fixed;
   bottom: 0px;
   background-color: rgb(249,249,249);
+}
+#controller-songpic{
+  width: 60px;
+  height: 60px;
+  position: relative;
+  float: left;
+  border: 1px solid rgb(211,211,211);
+  margin: 2px 16px 2px 2px;
+}
+.control{
+  width: 30px;
+  height: 30px;
+  margin: 16px 8px;
+  /*border: 1px solid rgb(211,211,211);*/
+  position: relative;
+  float: left;
+}
+.control img{
+  width: 30px;
+  height: 30px;
 }
 </style>
